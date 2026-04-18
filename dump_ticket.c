@@ -29,7 +29,6 @@ void analyze_ticket() {
     printf("========================================\n");
 
     // --- ANALYZING BLOCK 10 (PRODUCT TYPE) ---
-    // In your dump: fd 24 00 00
     uint8_t product_byte = ticket_memory[10][1];
     printf("[*] TICKET TYPE:    ");
     if (product_byte == 0x24) {
@@ -39,13 +38,11 @@ void analyze_ticket() {
     }
 
     // --- ANALYZING BLOCK 05 (COUNTER) ---
-    // In your dump: 38 0a 00 fe
     uint8_t counter_val = ticket_memory[5][1];
     printf("[*] COUNTER VALUE:  %d (Raw Hex: %02X)\n", counter_val, counter_val);
     if (counter_val == 10) printf("    (Likely initialized as a 10-count structure)\n");
 
     // --- ANALYZING BLOCK 13 (VALIDATION TIME) ---
-    // In your dump: 6a 16 02 00
     // Byte 0 (6a) = Time units (5 min intervals from 4:00 AM)
     // Byte 1 (16) = Day of Month
     
